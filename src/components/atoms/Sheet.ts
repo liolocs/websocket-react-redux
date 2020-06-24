@@ -8,6 +8,7 @@ import {
 	background,
 	border,
 	position,
+	grid,
 	SpaceProps,
 	LayoutProps,
 	ColorProps,
@@ -15,7 +16,8 @@ import {
 	FlexboxProps,
 	BackgroundProps,
 	BorderProps,
-	PositionProps
+	PositionProps,
+	GridProps
 } from 'styled-system'
 
 type Props = SpaceProps &
@@ -25,15 +27,9 @@ type Props = SpaceProps &
 	FlexboxProps &
 	BackgroundProps &
 	BorderProps &
-	PositionProps
+	PositionProps & 
+	GridProps
 
-const Sheet = styled('div')<Props>(space, layout, color, typography, flexbox, background, border, position)
-
-Sheet.defaultProps = {
-	display: 'flex',
-    flex: 'row nowrap',
-    width: '100%',
-    height: '100vh'
-}
+const Sheet = styled('div')<Props>(space, layout, color, typography, flexbox, background, border, position, grid)
 
 export default Sheet
