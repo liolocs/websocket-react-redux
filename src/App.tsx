@@ -1,5 +1,5 @@
 import React from 'react'
-import Sheet from './components/atoms/Sheet'
+import Main from './components/pages/Main'
 import { ThemeProvider } from 'styled-components'
 import theme from './theme'
 import { Provider } from 'react-redux'
@@ -9,9 +9,7 @@ const App = () => {
 	return (
     <Provider store={store}>
       <ThemeProvider theme={theme}>
-        <Sheet color='secondary' bg='bg.main' alignItems='center' justifyContent='center'>
-          My first project
-        </Sheet>
+        <Main></Main>
       </ThemeProvider>
     </Provider>
 	)
