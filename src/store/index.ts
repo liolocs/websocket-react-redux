@@ -1,10 +1,14 @@
-import { configureStore } from '@reduxjs/toolkit'
-import setupReducer from './setup'
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import socketReducer from './socket';
+import teamsReducer from './teams';
+import socketMiddleware from '../middleware/socket';
 
 const store = configureStore({
-	reducer: {
-		setup: setupReducer
-	}
-})
+  reducer: {
+    socket: socketReducer,
+    teams: teamsReducer,
+  },
+  middleware: getDefaultMiddleware().concat(socketMiddleware)
+});
 
-export default store
+export default store;
