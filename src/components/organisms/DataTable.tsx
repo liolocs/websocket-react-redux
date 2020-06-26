@@ -7,7 +7,8 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import useStream from '../../hooks/useStream';
+import useSocket from '../../hooks/useSocket';
+import config from '../../config';
 
 const useStyles = makeStyles({
   table: {
@@ -31,7 +32,7 @@ interface DataTableProps {}
 
 const DataTable = (props: DataTableProps) => {
   const classes = useStyles();
-  useStream();
+  useSocket(config.BASE_URL_WS + '/stream');
 
   return (
     <TableContainer component={Paper}>

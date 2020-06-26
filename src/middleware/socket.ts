@@ -1,21 +1,23 @@
 import { wConnect, wDisconnect } from '../store/socket';
-import { processGameResult } from '../store/teams';
-import { Middleware, MiddlewareAPI, AnyAction } from 'redux';
+import { Middleware, MiddlewareAPI } from 'redux';
 import { Dispatch } from 'react';
 import { PayloadAction } from '@reduxjs/toolkit';
 import { Socket } from '../models/socket';
+import { handleTeamUpdate } from '../store/teams';
 
 const socketMiddleware: Middleware = (api: MiddlewareAPI) => {
   let socket: Socket = null;
   const { dispatch } = api;
 
-  return (next: Dispatch<AnyAction>) => (action: PayloadAction<string>) => {
+  return (next: Dispatch<any>) => (action: PayloadAction<string>) => {
     switch (action.type) {
       case wConnect.toString():
         connectSocket(socket, action, dispatch);
+        next(action);
         break;
       case wDisconnect.toString():
         disconnectSocket(socket);
+        next(action);
         break;
       default:
         return next(action);
@@ -23,7 +25,7 @@ const socketMiddleware: Middleware = (api: MiddlewareAPI) => {
   };
 };
 
-const connectSocket = (socket: Socket, action: PayloadAction<string>, dispatch: Dispatch<AnyAction>) => {
+const connectSocket = (socket: Socket, action: PayloadAction<string>, dispatch: Dispatch<any>) => {
   if (socket !== null) {
     socket.close();
   }
@@ -35,10 +37,10 @@ const connectSocket = (socket: Socket, action: PayloadAction<string>, dispatch: 
   socket.onmessage = onMessage(dispatch);
 };
 
-const onMessage = (dispatch: Dispatch<AnyAction>) => (event: any) => {
+const onMessage = (dispatch: Dispatch<any>) => (event: any) => {
   const payload = JSON.parse(event.data).data;
 
-  dispatch(processGameResult(payload));
+  dispatch(handleTeamUpdate(payload));
 };
 
 const subscribe = JSON.stringify({
