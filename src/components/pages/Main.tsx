@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Sheet from '../atoms/Sheet';
 import DataTable from '../organisms/DataTable';
+import DataTableContainer from '../molecules/DataTableContainer';
 
 interface MainProps {}
 interface MainState {}
@@ -11,18 +11,9 @@ class Main extends Component<MainProps, MainState> {
 
   render() {
     return (
-      <Sheet
-        display='flex'
-        flexDirection='row'
-        flexWrap='nowrap'
-        width='100vw'
-        height='100vh'
-        alignItems='center'
-        justifyContent='center'
-        padding='0 5vw'
-      >
+      <DataTableContainer>
         <DataTable />
-      </Sheet>
+      </DataTableContainer>
     );
   }
 }
