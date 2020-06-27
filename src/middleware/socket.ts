@@ -3,7 +3,7 @@ import { Middleware, MiddlewareAPI } from 'redux';
 import { Dispatch } from 'react';
 import { PayloadAction } from '@reduxjs/toolkit';
 import { Socket } from '../models/socket';
-import { handleTeamUpdate } from '../store/teams';
+import { handleTeamUpdate } from '../store/teams/index';
 
 const socketMiddleware: Middleware = (api: MiddlewareAPI) => {
   let socket: Socket = null;
