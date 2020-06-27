@@ -9,9 +9,11 @@
   "type": "module",
   "typings": "index.d.ts",
   "scripts": {
-    "start": "node src/index.js"
+    "start": "node src/index.js",
+    "debug": "DEBUG='interview-server*' node src/index.js"
   },
   "dependencies": {
+    "@koa/cors": "^3.1.0",
     "chalk": "^4.1.0",
     "debug": "^4.1.1",
     "eventemitter3": "^4.0.4",

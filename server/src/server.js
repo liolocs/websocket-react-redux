@@ -9,6 +9,7 @@ import koa4040Handler from 'koa-404-handler';
 import EventEmitter from 'eventemitter3';
 import chalk from 'chalk';
 import dbg from 'debug';
+import cors from '@koa/cors'
 
 import { TEAMS } from './data.js';
 import { decideWinner, shuffle, randomInt } from './helpers.js';
@@ -20,6 +21,7 @@ import stream from './routes/stream.js';
 
 // Server setup
 const koa = new Koa();
+koa.use(cors({origin: '*'}))
 const server = websockify(koa);
 server.context.onerror = koaBetterErrorHandler;
 server.context.gameResults = [];
