@@ -1,6 +1,6 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import socketReducer from './socket';
-import teamsReducer from './teams';
+import teamsReducer from './teams/index';
 import socketMiddleware from '../middleware/socket';
 
 const store = configureStore({
